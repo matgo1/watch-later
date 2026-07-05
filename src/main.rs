@@ -1,4 +1,6 @@
 use serde::{Deserialize, Serialize};
+use std::fs;
+use std::path::Path;
 
 const FILE_PATH: &str = "data/videos.json";
 
@@ -27,7 +29,20 @@ impl WatchLater {
     // 4. Load json
 
     pub fn load() -> Result<JsonData, Box<dyn std::error::Error>> {
-        let data = std::fs::read_to_string(FILE_PATH)?;
+        // Create a dir if not exist
+        if !Path::new("data").is_dir() {
+            fs::create_dir("data")?;
+        }
+
+        // Create a file if not exist
+        if !Path::new(FILE_PATH).exists() {
+            fs::File::create(FILE_PATH)?;
+        }
+
+        let data = fs::read_to_string(FILE_PATH)?;
+        if data.trim().is_empty() {
+            return Ok(JsonData { videos: Vec::new() });
+        }
         Ok(serde_json::from_str(&data)?)
     }
 
