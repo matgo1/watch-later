@@ -1,0 +1,24 @@
+{
+  "videos": [
+    {
+      "title": "Rust Basics",
+      "link": "https://youtube.com/watch?v=dQw4w9WgXcQ",
+      "description": "Learn the fundamentals of Rust"
+    },
+    {
+      "title": "Advanced OOP in Rust",
+      "link": "https://youtube.com/watch?v=abc123def456",
+      "description": "Deep dive into traits and composition"
+    },
+    {
+      "title": "Async Programming",
+      "link": "https://youtube.com/watch?v=xyz789",
+      "description": null
+    },
+    {
+      "title": "Memory Management",
+      "link": "https://youtube.com/watch?v=mem456",
+      "description": "Understanding ownership and borrowing"
+    }
+  ]
+}
