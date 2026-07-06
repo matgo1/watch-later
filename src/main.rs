@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 use std::fs;
+use std::io;
 use std::path::Path;
 
 const FILE_PATH: &str = "data/videos.json";
@@ -16,6 +17,20 @@ pub struct Video {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct JsonData {
     videos: Vec<Video>,
+}
+
+pub fn read_line(text: Option<&str>) -> io::Result<String> {
+    if let Some(t) = text {
+        println!("{}", t);
+    }
+    let mut input = String::new();
+    io::stdin().read_line(&mut input)?;
+    Ok(input.trim().to_string())
+}
+
+pub fn create_video() -> io::Result<()> {
+    let title = read_line(Some("Come up with a title >>> "))?;
+    Ok(())
 }
 
 // Class WatchLater
@@ -62,13 +77,6 @@ impl WatchLater {
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     clearscreen::clear()?;
-
-    let testing: Video = Video {
-        title: "test".to_string(),
-        link: "https://testing.com".to_string(),
-        description: Some(String::from("Jopa")),
-    };
-
-    WatchLater::add_video(testing);
+    create_video();
     Ok(())
 }
