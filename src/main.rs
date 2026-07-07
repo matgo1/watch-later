@@ -6,7 +6,7 @@ use std::path::Path;
 const FILE_PATH: &str = "data/videos.json";
 
 // Template for json item
-#[derive(serde::Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Video {
     title: String,
     link: String,
