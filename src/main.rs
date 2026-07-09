@@ -1,25 +1,54 @@
 mod data;
 
 use data::{Video, WatchLater};
-use std::io;
+use rinput::rinput;
 
-pub fn read_line(text: Option<&str>) -> io::Result<String> {
-    if let Some(t) = text {
-        println!("{}", t);
+fn is_valid_link(link: &str) -> bool {
+    link.starts_with("http:/") || link.starts_with("https:/")
+}
+
+fn create_video() -> Video {
+    let link: String = loop {
+        let input = rinput!("Enter your link: ");
+        let input = input.trim();
+
+        if is_valid_link(input) {
+            break input.to_owned();
+        }
+    };
+
+    let title: String = loop {
+        let input = rinput!("Call your video: ");
+        let input = input.trim();
+
+        if input.is_empty() {
+            println!("Please write a title");
+        } else {
+            break input.to_owned();
+        }
+    };
+
+    let description = {
+        let input = rinput!("Enter your description (optional): ");
+        let input = input.trim();
+
+        if input.is_empty() {
+            None
+        } else {
+            Some(input.to_owned())
+        }
+    };
+
+    Video {
+        title,
+        link,
+        description,
     }
-    let mut input = String::new();
-    io::stdin().read_line(&mut input)?;
-    Ok(input.trim().to_string())
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     clearscreen::clear()?;
-    // Test example
-    let vid = Video {
-        title: "Jopa".to_string(),
-        link: "Jopa".to_string(),
-        description: None,
-    };
+    let vid = create_video();
     WatchLater::add_video(vid)?;
     Ok(())
 }

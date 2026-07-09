@@ -157,6 +157,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ec0be4795e2f6a28069bec0b5ff3e2ac9bafc99e6a9a7dc3547996c5c816922c"
 
 [[package]]
+name = "rinput"
+version = "0.1.0"
+source = "git+https://github.com/matgo1/rinput.git#3f203aefb4963dcb8d0a2db290809ebcd9a0027a"
+
+[[package]]
 name = "serde"
 version = "1.0.228"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -259,6 +264,7 @@ name = "watch-later"
 version = "0.1.0"
 dependencies = [
  "clearscreen",
+ "rinput",
  "serde",
  "serde_json",
 ]
