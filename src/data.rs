@@ -1,3 +1,4 @@
+use rand::seq::IndexedRandom;
 use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::Path;
@@ -5,7 +6,7 @@ use std::path::Path;
 const FILE_PATH: &str = "data/videos.json";
 
 // Template for json item
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, Default)]
 pub struct Video {
     pub title: String,
     pub link: String,
@@ -57,5 +58,13 @@ impl WatchLater {
         data.videos.push(video);
         Self::save(&data)?;
         Ok(())
+    }
+
+    pub fn random_video() -> Result<Video, Box<dyn std::error::Error>> {
+        let data: JsonData = Self::load()?;
+        match data.videos.choose(&mut rand::rng()) {
+            Some(i) => Ok(i.clone()),
+            None => Ok(Video::default()),
+        }
     }
 }

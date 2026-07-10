@@ -50,5 +50,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     clearscreen::clear()?;
     let vid = create_video();
     WatchLater::add_video(vid)?;
+    let rand_vid = WatchLater::random_video()?;
+    println!("{:?}", rand_vid);
     Ok(())
 }
