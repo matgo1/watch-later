@@ -60,7 +60,7 @@ impl WatchLater {
         Ok(())
     }
 
-    pub fn random_video() -> Result<Video, Box<dyn std::error::Error>> {
+    pub fn get_random_video() -> Result<Video, Box<dyn std::error::Error>> {
         let data: JsonData = Self::load()?;
         match data.videos.choose(&mut rand::rng()) {
             Some(i) => Ok(i.clone()),

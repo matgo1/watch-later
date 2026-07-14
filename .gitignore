@@ -1,2 +1,9 @@
-/target
-/data/*
+# rust backend
+backend/target/
+backend/data/
+
+# python telegram bot
+tg-bot/.env
+tg-bot/__pycache__
+tg-bot/.vemv/
+tg-bot/.pyc
