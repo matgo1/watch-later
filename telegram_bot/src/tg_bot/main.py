@@ -12,6 +12,10 @@ logger = logging.getLogger(__name__)  # Collect logs
 async def run_bot():
     logger.info("Initializing Telegram Bot")
 
+    # Construct Bot
+    bot = Bot()
+    dp = Dispatcher()
+
 
 def main():
     try:

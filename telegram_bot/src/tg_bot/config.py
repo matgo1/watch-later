@@ -2,7 +2,12 @@ import logging
 import sys
 from pathlib import Path
 
-# region Set up logging
+from aiogram.client import bot
+from pydantic_core.core_schema import model_field
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import SecretStr, config
+
+# Setting up logging
 # Create dir if not exist
 LOGS_DIR = Path(__file__).resolve().parent.parent.parent / "logs"
 LOGS_DIR.mkdir(exist_ok=True)
@@ -26,3 +31,13 @@ root_logger.addHandler(stdout_handler)
 file_handler = logging.FileHandler(LOG_FILE_PATH, encoding="utf-8")
 file_handler.setFormatter(LOG_FORMAT)
 root_logger.addHandler(file_handler)
+
+
+# Get bot token
+class Settings(BaseSettings):
+    BOT_TOKEN: SecretStr
+
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+
+
+config = Settings()
