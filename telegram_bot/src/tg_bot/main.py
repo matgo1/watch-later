@@ -13,7 +13,7 @@ async def run_bot():
     logger.info("Initializing Telegram Bot")
 
     # Construct Bot
-    bot = Bot()
+    bot = Bot(config.config.BOT_TOKEN)
     dp = Dispatcher()
 
 
