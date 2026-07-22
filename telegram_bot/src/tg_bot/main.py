@@ -3,6 +3,7 @@ import asyncio
 from aiogram import Dispatcher, Bot
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums.parse_mode import ParseMode
+from tg_bot.handlers import get_handlers_routers
 
 import tg_bot.config as config
 
@@ -22,7 +23,7 @@ async def run_bot():
     dp = Dispatcher()
 
     # Include routers
-    # dp.include_router()
+    dp.include_router(get_handlers_routers())
 
     try:
         await bot.delete_webhook(drop_pending_updates=True)

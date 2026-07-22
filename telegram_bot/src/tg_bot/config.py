@@ -32,6 +32,8 @@ file_handler = logging.FileHandler(LOG_FILE_PATH, encoding="utf-8")
 file_handler.setFormatter(LOG_FORMAT)
 root_logger.addHandler(file_handler)
 
+BACKEND_URL = "http://127.0.0.1:3000"
+
 
 # Get bot token
 class Settings(BaseSettings):
