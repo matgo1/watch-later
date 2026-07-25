@@ -10,7 +10,6 @@ const FILE_PATH: &str = "data/videos.json";
 pub struct Video {
     pub title: String,
     pub link: String,
-    pub description: Option<String>,
 }
 
 // Template of json file
