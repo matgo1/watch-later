@@ -43,4 +43,4 @@ async def process_title(message: Message, state: FSMContext):
     except ApiError as e:
         await message.answer(f"Couldn't save video ({e.status}).")
     finally:
-        await state.clear()
+        await state.set_state(DefaultStates.active)
