@@ -66,4 +66,15 @@ impl WatchLater {
             None => Ok(Video::default()),
         }
     }
+
+    pub fn remove_video(input_link: String) -> Result<(), Box<dyn std::error::Error>> {
+        let mut data: JsonData = Self::load()?;
+        if let Some(index) = data.videos.iter().position(|v| v.link == input_link) {
+            data.videos.remove(index);
+        }
+
+        Self::save(&data)?;
+
+        Ok(())
+    }
 }

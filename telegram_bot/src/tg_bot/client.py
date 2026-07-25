@@ -27,3 +27,13 @@ async def get_random_video() -> Dict:
             if resp.status == 200:
                 return await resp.json()
             raise ApiError(resp.status, "Backend error")
+
+
+async def remove_video(link: str) -> None:
+    async with aiohttp.ClientSession() as session:
+        async with session.post(f"{BACKEND_URL}/remove", json=link) as resp:
+            if resp.status == 204:
+                return
+            if resp.status == 400:
+                raise ApiError(400, "Failed to delete from data")
+            raise ApiError(resp.status, "Backend error")

@@ -8,3 +8,7 @@ class DefaultStates(StatesGroup):
 class AddVideoStates(StatesGroup):
     waiting_for_link = State()
     waiting_for_title = State()
+
+
+class RemoveVideoStates(StatesGroup):
+    waiting_for_resp = State()

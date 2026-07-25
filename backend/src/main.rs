@@ -30,12 +30,20 @@ async fn add_video_handler(Json(payload): Json<Video>) -> Result<StatusCode, Sta
     }
 }
 
+async fn remove_video_handler(Json(link): Json<String>) -> Result<StatusCode, StatusCode> {
+    match WatchLater::remove_video(link) {
+        Ok(_) => Ok(StatusCode::NO_CONTENT),
+        Err(_) => Err(StatusCode::INTERNAL_SERVER_ERROR),
+    }
+}
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Build the router
     let app = Router::new()
         .route("/random", get(get_random_handler))
-        .route("/add", post(add_video_handler));
+        .route("/add", post(add_video_handler))
+        .route("/remove", post(remove_video_handler));
 
     // Bind on port 3000
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await?;
