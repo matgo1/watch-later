@@ -6,6 +6,7 @@ from .get_video_handler import router as get_video_router
 
 
 def get_handlers_routers() -> Router:
+    """Collect all routers in one"""
     main_loader = Router()
     routers: List[Router] = [default_router, add_video_router, get_video_router]
     main_loader.include_routers(*routers)

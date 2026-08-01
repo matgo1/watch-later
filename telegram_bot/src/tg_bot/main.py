@@ -5,7 +5,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums.parse_mode import ParseMode
 from tg_bot.handlers import get_handlers_routers
 
-import tg_bot.config as config
+import tg_bot.config as config  # Settings
 
 logger = logging.getLogger(__name__)  # Collect logs
 
@@ -26,7 +26,9 @@ async def run_bot():
     dp.include_router(get_handlers_routers())
 
     try:
+        # Ignore message sent before polling
         await bot.delete_webhook(drop_pending_updates=True)
+        # Start bot's polling
         await dp.start_polling(bot)
 
     except Exception as error:
@@ -37,6 +39,7 @@ async def run_bot():
 
 
 def main():
+    """A little hack for uv to better work"""
     try:
         asyncio.run(run_bot())
     except KeyboardInterrupt:

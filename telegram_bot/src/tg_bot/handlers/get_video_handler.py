@@ -1,4 +1,3 @@
-from os import link
 from typing import Dict
 from aiogram import Router, F
 from aiogram.filters import Command, StateFilter
@@ -14,6 +13,11 @@ router = Router()
 
 @router.message(Command("get_ran"), StateFilter(DefaultStates.active))
 async def cmd_get(message: Message, state: FSMContext):
+    """
+    We get random video, print it and give use choice:
+    1. Choose this vide;
+    2. Skip and show another
+    """
     try:
         video: Dict[str, str] = await get_random_video()
         await message.answer(
@@ -31,6 +35,10 @@ async def cmd_get(message: Message, state: FSMContext):
     F.data == "next_video", StateFilter(RemoveVideoStates.waiting_for_resp)
 )
 async def change_video(callback: CallbackQuery, state: FSMContext):
+    """
+    If user chose to watch another video,
+    show him another video
+    """
     await callback.answer()
     try:
         video: Dict[str, str] = await get_random_video()
@@ -48,6 +56,10 @@ async def change_video(callback: CallbackQuery, state: FSMContext):
     F.data == "remove_video", StateFilter(RemoveVideoStates.waiting_for_resp)
 )
 async def remove_chosen_video(callback: CallbackQuery, state: FSMContext):
+    """
+    If user chose to watch the video,
+    delete the video from file.
+    """
     await callback.answer()
     data = await state.get_data()
     link = data.get("link") or ""

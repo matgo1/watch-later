@@ -2,8 +2,6 @@ import logging
 import sys
 from pathlib import Path
 
-from aiogram.client import bot
-from pydantic_core.core_schema import model_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import SecretStr, config
 

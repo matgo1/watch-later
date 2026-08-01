@@ -1,3 +1,5 @@
+"""Start and stop handlers"""
+
 from aiogram import Router
 from aiogram.filters import Command, StateFilter
 from aiogram.types import Message

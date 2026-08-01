@@ -4,6 +4,8 @@ from typing import Dict
 
 
 class ApiError(Exception):
+    """Error handling of API"""
+
     def __init__(self, status: int, message: str = ""):
         self.status = status
         self.message = message
@@ -22,6 +24,7 @@ async def add_video(link: str, title: str, description: str | None = None) -> No
 
 
 async def get_random_video() -> Dict:
+    """Returns a video struct"""
     async with aiohttp.ClientSession() as session:
         async with session.get(f"{BACKEND_URL}/random") as resp:
             if resp.status == 200:

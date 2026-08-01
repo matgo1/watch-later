@@ -17,6 +17,7 @@ async def cmd_add(message: Message, state: FSMContext):
 
 @router.message(StateFilter(AddVideoStates.waiting_for_link))
 async def process_link(message: Message, state: FSMContext):
+    """Collect link"""
     link = message.text.strip()
     if not (link.startswith("http://") or link.startswith("https://")):
         await message.answer("Wrong link")
@@ -29,6 +30,7 @@ async def process_link(message: Message, state: FSMContext):
 
 @router.message(StateFilter(AddVideoStates.waiting_for_title))
 async def process_title(message: Message, state: FSMContext):
+    """Get title"""
     title = message.text.strip()
     if not title:
         await message.answer("Title can't be empty be empty. Try again")
