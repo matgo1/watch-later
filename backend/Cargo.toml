@@ -1,5 +1,5 @@
 [package]
-name = "watch-later"
+name = "watch-later-backend"
 version = "1.0.0"
 edition = "2024"
 
