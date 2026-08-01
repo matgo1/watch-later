@@ -22,12 +22,6 @@ pub struct JsonData {
 pub struct WatchLater;
 
 impl WatchLater {
-    // Functionality:
-    // 1. add links to json
-    // 2. write random link from json
-    // 3. Optional! check if is valid link
-    // 4. Load json
-
     fn load() -> Result<JsonData, Box<dyn std::error::Error>> {
         // Create a dir if not exist
         if !Path::new("data").is_dir() {
