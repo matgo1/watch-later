@@ -145,9 +145,10 @@ created automatically on first run.
 - pydantic-settings -- environment-based configuration
 - uv -- dependency manager
 
-## Improvements
+## TODO
 
-Make video not show twice when cycle
+- Make video not show twice when cycle
+- Make databases and place on server so you don't need to download bot to use
 
 ## License
 
